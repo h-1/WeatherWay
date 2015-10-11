@@ -9,11 +9,10 @@ import os
 from flask import current_app
 locations = []
 plusTimes = []
-steps = []
 returnDirections=[]
 def isRaining(lat,lng,time):
 	print"rain"
-	time = "40:00:00"
+	# time = "40:00:00"
 	url = "http://api.weather.com/beta/datacloud/?datatype=forecast&vs=1.0&passkey=d972da81e1ce2f854f9a5560ffb6f243&type=point&var=PrecipIntensity&lat=" + str(lat) + "&lon=" + str(lng) + "&format=hourly&time=now+" + str(time)
 	u = urllib.urlopen(url)
 	data = u.read()
@@ -35,31 +34,31 @@ with open('accidents.json') as data_file:
 		dicLoc = {"lat":lat,"lng":lng,"danger":False}
 		locations.append(dicLoc)
 
-def checkDanger(step):
+def checkDanger(step,steps):
 	#Check if it is Raining on that Step
-	pprint(step)
-	print("check")
+	# pprint(step)
 	stepLoc = step["start_location"]
 	lat = stepLoc["lat"]
 	lng = stepLoc["lng"]
-	print(isRaining(lat,lng,getTimeForStep(step)))
+	print(isRaining(lat,lng,getTimeForStep(step,steps)))
 
 	#If it is raining, check for dangerous areas
-	if isRaining(lat,lng,getTimeForStep(step)):
-		for danger in locations:
+	if isRaining(lat,lng,getTimeForStep(step,steps)):
+		for danger in locations:	
 			if round(lat,2) == round(danger["lat"],2) and round(lng,2) == round(danger["lng"],2):
 				print("DANGER")
 				# if locations.index(danger) != len(locations) -1:
 					# print(locations[locations.index(danger)+1])
 				if steps.index(step) < len(steps)-1:
-					getAlternativeForDanger(step,steps[steps.index(step)+1])
+					getAlternativeForDanger(step,steps[steps.index(step)+1],steps)
 				else:
 					step2 = step
 					step2["start_location"] = step["end_location"]
-					getAlternativeForDanger(step,step2)
+					getAlternativeForDanger(step,step2,steps)
 
-def getAlternativeForDanger(step,step2):
+def getAlternativeForDanger(step,step2,steps):
 	#start
+	print("alternative")
 	stepLoc = step["start_location"]
 	sLat = stepLoc["lat"]
 	sLng = stepLoc["lng"]
@@ -73,13 +72,13 @@ def getAlternativeForDanger(step,step2):
 	aLat = eLat + 0.001
 	aLng = eLng - 0.001
 
-	url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + str(sLat) + "," + str(sLng) + "&destination=" + str(eLat) + "," + str(eLng) + "&waypoints=" + str(aLat) + "," + str(aLng) + "&mode=driving&sensor=false&alternatives=true"
-	# print(url)
+	url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + str(sLat) + "," + str(sLng) + "&destination=" + str(eLat) + "," + str(eLng) + "&waypoints=" + str(aLat) + "," + str(aLng) + "&mode=driving&sensor=false&alternatives=true&key=AIzaSyCYZCLHpX0Vh9m_OPtDPGAmuiHnl1MsrEk"
+	print(url)
 	u = urllib.urlopen(url)
 # u is a file-like object
 	data = u.read()
 	routes = json.loads(data)
-	# pprint(routes)
+	pprint(routes)
 	legs = routes["routes"][0]["legs"]
 	leg1 = legs[0]["steps"]
 	leg2 = legs[1]["steps"]
@@ -87,8 +86,10 @@ def getAlternativeForDanger(step,step2):
 	leg1.extend(leg2)
 
 	#replacing first step
+	print("ch")
 	if step in returnDirections:
 		returnDirections.remove(step)
+	print("ch")
 
 	index = steps.index(step)
 	for item in leg1:
@@ -103,7 +104,7 @@ def getAlternativeForDanger(step,step2):
 	# steps[steps.index(step)] = alternateStep
 
 #given step, returns time in 00:00:00 format/
-def getTimeForStep(step): 
+def getTimeForStep(step,steps): 
 	index = steps.index(step)
 	plusTime = plusTimes[index]
 
@@ -123,12 +124,12 @@ def direct():
 	#destination's location
 	dLat = str(request.args['dLat'])
 	dLng = str(request.args['dLng'])	
-	print(cLat)
-	print(cLng)
-	print(dLat)
-	print(dLng)
+	# print(cLat)
+	# print(cLng)
+	# print(dLat)
+	# print(dLng)
 	url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + cLat + "," + cLng + "&destination=" + dLat + "," + dLng + "&mode=driving&sensor=false&alternatives=true"
-	print(url)
+	# print(url)
 	u = urllib.urlopen(url)
 	# u is a file-like object
 	data = u.read()
@@ -146,7 +147,7 @@ def direct():
 		currentTime += int(step["duration"]["value"])
 		plusTimes.append(currentTime)
 		stepLoc = step["start_location"]
-		checkDanger(step)
+		checkDanger(step,steps)
 	return json.dumps(returnDirections)
 
 if __name__ == "__main__":
