@@ -2,8 +2,23 @@ import urllib
 from pprint import pprint
 import json
 import xml.etree.ElementTree as ET
+import datetime
 
 locations = []
+plusTimes = []
+steps = []
+def isRaining(lat,lng,time):
+	url = "http://api.weather.com/beta/datacloud/?datatype=forecast&vs=1.0&passkey=d972da81e1ce2f854f9a5560ffb6f243&type=point&var=PrecipIntensity&lat=" + str(lat) + "&lon=" + str(lng) + "&format=hourly&time=now+" + str(time)
+	u = urllib.urlopen(url)
+	data = u.read()
+	split1 = data.split("dbz")[1]
+	split2 = split1[2:]
+	split3 = split2.split("</P")[0]
+	
+	if float(split3)>0:
+		return True
+	else:
+		return False
 
 
 with open('accidents.json') as data_file:
@@ -15,19 +30,20 @@ with open('accidents.json') as data_file:
 		locations.append(dicLoc)
 
 def checkDanger(step):
+	#Check if it is Raining on that Step
 	stepLoc = step["start_location"]
-	lat = round(stepLoc["lat"],2)
-	lng = round(stepLoc["lng"],2)
-	for danger in locations:
-		if lat == round(danger["lat"],2) and lng == round(danger["lng"],3):
-			print("DANGER")
-			print(danger)
-			print(step["polyline"])
-			if locations.index(danger) != len(locations) -1:
-				print(locations[locations.index(danger)+1])
-				getAlternativeForDanger(danger,locations[locations.index(danger)+1])
-			# locations[locations.index(danger)]["danger"] = True
+	lat = stepLoc["lat"]
+	lng = stepLoc["lng"]
 
+	#If it is raining, check for dangerous areas
+	if isRaining(lat,lng,getTimeForStep(step)):
+		print(isRaining(lat,lng,getTimeForStep(step)))
+		for danger in locations:
+			if round(lat,2) == round(danger["lat"],2) and round(lng,2) == round(danger["lng"],2):
+				print("DANGER")
+				# if locations.index(danger) != len(locations) -1:
+					# print(locations[locations.index(danger)+1])
+				# getAlternativeForDanger(danger,locations[locations.index(danger)+1])
 def getAlternativeForDanger(sLoc,eLoc):
 	#start
 	sLat = sLoc["lat"]
@@ -47,29 +63,27 @@ def getAlternativeForDanger(sLoc,eLoc):
 		pprint(step["polyline"])
 	print("=======")
 
+#given step, returns time in 00:00:00 format
+def getTimeForStep(step):
+	index = steps.index(step)
+	plusTime = plusTimes[index]
 
-url = 'https://maps.googleapis.com/maps/api/directions/json?origin=47.606209,-122.332071&destination=47.616452,-122.297895&mode=driving&sensor=false'
+	return "00:" + ('%02d' % (plusTime/60)) + ":00"
+
+url = 'https://maps.googleapis.com/maps/api/directions/json?origin=47.806209,-122.332071&destination=47.616452,-122.297895&mode=driving&sensor=false'
 u = urllib.urlopen(url)
 # u is a file-like object
 data = u.read()
+# print(data)
 routes = json.loads(data)
 
 steps = routes["routes"][0]["legs"][0]["steps"]
 for step in steps:
+	currentTime = 0
+	if  len(plusTimes) >0:
+		currentTime = plusTimes[len(plusTimes)-1]
+
+	currentTime += step["duration"]["value"]
+	plusTimes.append(currentTime)
 	stepLoc = step["start_location"]
-
-	
-#loc: 
-	#lat:Double
-	#lng":Double
-	#time: 00:00:00
-def getDBZForLoc(loc):
-	url = "http://api.weather.com/beta/datacloud/?datatype=forecast&vs=1.0&passkey=d972da81e1ce2f854f9a5560ffb6f243&type=point&var=PrecipIntensity&lat=" + loc["lat"] + "&lon=" + loc["lng"] + "&format=hourly&time=now+" + loc["time"]
-	u = urllib.urlopen(url)
-	data = u.read()
-	split1 = data.split("dbz")[1]
-	split2 = split1[2:]
-	split3 = split2.split("</P")[0]
-	return float(split3)
-	# checkDanger(step)
-
+	checkDanger(step)
