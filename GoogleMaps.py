@@ -3,6 +3,9 @@ from pprint import pprint
 import json
 import xml.etree.ElementTree as ET
 import datetime
+from flask import Flask, request, redirect, session, url_for
+app = Flask(__name__)
+import os
 
 locations = []
 plusTimes = []
@@ -124,4 +127,12 @@ for step in steps:
 	stepLoc = step["start_location"]
 	checkDanger(step)
 print(json.dumps(returnDirections))
+
+@app.route("/")
+def index():
+        return json.dumps(returnDirections)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
