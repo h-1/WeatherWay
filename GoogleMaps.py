@@ -63,7 +63,7 @@ def getAlternativeForDanger(sLoc,eLoc):
 		pprint(step["polyline"])
 	print("=======")
 
-#given step, returns time in 00:00:00 format
+#given step, returns time in 00:00:00 format/
 def getTimeForStep(step):
 	index = steps.index(step)
 	plusTime = plusTimes[index]
