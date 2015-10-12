@@ -1,0 +1,20 @@
+steps:
+[{u'distance': {u'text': u'0.2 mi', u'value': 386},
+  u'duration': {u'text': u'1 min', u'value': 78},
+  u'end_location': {u'lat': 47.61114329999999, u'lng': -122.3208208},
+  u'html_instructions': u'Head <b>northeast</b> on <b>Madison St</b> toward <b>Boren Ave</b>',
+  u'polyline': {u'points': u'euqaHnsriVGS[}@W{@Oc@Ww@a@qAGSCKQg@K]Og@]gAa@oA[cA_@iA]eASu@'},
+  u'start_location': {u'lat': 47.6093131, u'lng': -122.3251981},
+  u'travel_mode': u'DRIVING'},
+ {u'distance': {u'text': u'0.6 mi', u'value': 1021},
+  u'duration': {u'text': u'5 mins', u'value': 273},
+  u'end_location': {u'lat': 47.6203221, u'lng': -122.3208775},
+  u'html_instructions': u'Turn <b>left</b> onto <b>Broadway</b><div style="font-size:0.9em">Destination will be on the right</div>',
+  u'maneuver': u'turn-left',
+  u'polyline': {u'points': u's`raHbxqiVu@?_A?uF?u@?u@@wA?]?gACw@C]?c@?e@?k@@[?mC@K?O@[?uB@}@@K?W?M?_@?_@?uA@q@?cA@[?i@?e@@u@?w@?[@'},
+  u'start_location': {u'lat': 47.61114329999999, u'lng': -122.3208208},
+  u'travel_mode': u'DRIVING'}]
+It is raining
+DANGER
+alternative
+https://maps.googleapis.com/maps/api/directions/json?origin=47.6093131,-122.3251981&destination=47.6111433,-122.3208208&waypoints=47.6121433,-122.3218208&mode=driving&sensor=false&alternatives=true&key=AIzaSyCYZCLHpX0Vh9m_OPtDPGAmuiHnl1MsrEk
