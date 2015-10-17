@@ -1,13 +1,13 @@
 PODS:
   - Alamofire (3.0.0)
-  - NVActivityIndicatorView (2.0)
+  - Polyline (2.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
-  - NVActivityIndicatorView
+  - Polyline (~> 2.0)
 
 SPEC CHECKSUMS:
   Alamofire: b61782387f81bcc538a0284cf2bb5d7995cd0a80
-  NVActivityIndicatorView: cf985d36b502d01e4670d3026fb8e30494a6fd6a
+  Polyline: 43831262f08823487810870f3886319371e00612
 
 COCOAPODS: 0.38.2

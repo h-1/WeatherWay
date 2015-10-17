@@ -53,9 +53,9 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-WeatherWayApp/Alamofire.framework'
-  install_framework 'Pods-WeatherWayApp/NVActivityIndicatorView.framework'
+  install_framework 'Pods-WeatherWayApp/Polyline.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-WeatherWayApp/Alamofire.framework'
-  install_framework 'Pods-WeatherWayApp/NVActivityIndicatorView.framework'
+  install_framework 'Pods-WeatherWayApp/Polyline.framework'
 fi

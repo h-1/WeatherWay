@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
+//import NVActivityIndicatorView
 import EventKit
 import Alamofire
 
@@ -37,19 +37,19 @@ class LoadingViewController: UIViewController {
     Alamofire.request(.GET, "http://192.168.0.15:5000/?cLat=47.609219&cLng=-122.425204&dLat=47.520328&dLng=-122.320398").responseJSON { response in
       if let JSON = response.result.value {
         print("JSON: \(JSON)")
+        
+        /*
+        - latitude,longitude
+
+
+*/
       }
       
       
     }
     return arrResult
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
+  
     /*
     // MARK: - Navigation
 

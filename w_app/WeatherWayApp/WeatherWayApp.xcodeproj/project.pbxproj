@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2FED4982E32F5F010DFB7302 /* Pods_WeatherWayApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A0F4F4A495CDE4E146A871 /* Pods_WeatherWayApp.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		C22618361BCB438F0094AC98 /* directions copy.json in Resources */ = {isa = PBXBuildFile; fileRef = C22618351BCB438F0094AC98 /* directions copy.json */; };
 		C22765791BD25CFC002E4CE2 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22765781BD25CFC002E4CE2 /* LoadingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		C227657B1BD2FA7B002E4CE2 /* directions.json in Resources */ = {isa = PBXBuildFile; fileRef = C227657A1BD2FA7B002E4CE2 /* directions.json */; settings = {ASSET_TAGS = (); }; };
 		C23034CE1BCB6BC20075EBBC /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23034CD1BCB6BC20075EBBC /* EventViewController.swift */; };
 		C23034D21BCB6C0A0075EBBC /* CalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23034D11BCB6C0A0075EBBC /* CalendarController.m */; };
 		C23034D91BCB6E410075EBBC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23034D71BCB6E410075EBBC /* Interface.storyboard */; };
@@ -29,7 +29,6 @@
 		C28E981F1BCA6131006D26E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28E981D1BCA6131006D26E9 /* LaunchScreen.storyboard */; };
 		C28E982A1BCA6131006D26E9 /* WeatherWayAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E98291BCA6131006D26E9 /* WeatherWayAppTests.swift */; };
 		C28E98351BCA6131006D26E9 /* WeatherWayAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E98341BCA6131006D26E9 /* WeatherWayAppUITests.swift */; };
-		C28E98431BCA64EF006D26E9 /* directions.json in Resources */ = {isa = PBXBuildFile; fileRef = C28E98421BCA64EF006D26E9 /* directions.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +90,8 @@
 /* Begin PBXFileReference section */
 		44A0F4F4A495CDE4E146A871 /* Pods_WeatherWayApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherWayApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C165ECF13FA9480EE8340269 /* Pods-WeatherWayApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherWayApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherWayApp/Pods-WeatherWayApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C22618351BCB438F0094AC98 /* directions copy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "directions copy.json"; sourceTree = "<group>"; };
 		C22765781BD25CFC002E4CE2 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		C227657A1BD2FA7B002E4CE2 /* directions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = directions.json; sourceTree = "<group>"; };
 		C23034CD1BCB6BC20075EBBC /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		C23034CF1BCB6C0A0075EBBC /* WeatherWayApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherWayApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		C23034D01BCB6C0A0075EBBC /* CalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarController.h; sourceTree = "<group>"; };
@@ -123,7 +122,6 @@
 		C28E98301BCA6131006D26E9 /* WeatherWayAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherWayAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28E98341BCA6131006D26E9 /* WeatherWayAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWayAppUITests.swift; sourceTree = "<group>"; };
 		C28E98361BCA6131006D26E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C28E98421BCA64EF006D26E9 /* directions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = directions.json; sourceTree = "<group>"; };
 		E1607DF3654DEDE72DAF6F22 /* Pods-WeatherWayApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherWayApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherWayApp/Pods-WeatherWayApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,9 +239,8 @@
 			children = (
 				C23034D01BCB6C0A0075EBBC /* CalendarController.h */,
 				C23034D11BCB6C0A0075EBBC /* CalendarController.m */,
-				C22618351BCB438F0094AC98 /* directions copy.json */,
-				C28E98421BCA64EF006D26E9 /* directions.json */,
 				C28E98141BCA6131006D26E9 /* AppDelegate.swift */,
+				C227657A1BD2FA7B002E4CE2 /* directions.json */,
 				C28E98161BCA6131006D26E9 /* ViewController.swift */,
 				C28E98181BCA6131006D26E9 /* Main.storyboard */,
 				C23034CD1BCB6BC20075EBBC /* EventViewController.swift */,
@@ -445,8 +442,7 @@
 				C28E981F1BCA6131006D26E9 /* LaunchScreen.storyboard in Resources */,
 				C28E981C1BCA6131006D26E9 /* Assets.xcassets in Resources */,
 				C28E981A1BCA6131006D26E9 /* Main.storyboard in Resources */,
-				C22618361BCB438F0094AC98 /* directions copy.json in Resources */,
-				C28E98431BCA64EF006D26E9 /* directions.json in Resources */,
+				C227657B1BD2FA7B002E4CE2 /* directions.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

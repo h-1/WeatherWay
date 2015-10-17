@@ -2,8 +2,9 @@
 # platform :ios, '6.0'
 use_frameworks!
 target 'WeatherWayApp' do
-  pod 'NVActivityIndicatorView'
+#  pod 'NVActivityIndicatorView'
   pod 'Alamofire', '~> 3.0'
+  pod 'Polyline', '~> 2.0'
 
 end
 

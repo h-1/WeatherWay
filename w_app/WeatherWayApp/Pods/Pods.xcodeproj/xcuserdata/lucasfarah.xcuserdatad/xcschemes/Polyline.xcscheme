@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "071DDA5AA08DB8A94A65BE2B"
-               BuildableName = "NVActivityIndicatorView.framework"
-               BlueprintName = "NVActivityIndicatorView"
+               BlueprintIdentifier = "BF8257EDCF45D8BA545E6C51"
+               BuildableName = "Polyline.framework"
+               BlueprintName = "Polyline"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

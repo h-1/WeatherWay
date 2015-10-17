@@ -9,12 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>NVActivityIndicatorView.xcscheme</key>
+		<key>Pods-WeatherWayApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-WeatherWayApp.xcscheme</key>
+		<key>Polyline.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>68887305F7D07D66CE06DDDC909B54AA</key>
+		<key>6A0F5224B8C8D85D5439A956EF5AC203</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBDD02A5986E43EFAD406980F4612EDA</key>
+		<key>7C2ED26D7045196D9C2F77BBE2D07758</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C9CBB28521EB79F3D36F556C715E2E75</key>
+		<key>A33897FD5AF3F8E89226314A4F0CD620</key>
 		<dict>
 			<key>primary</key>
 			<true/>
