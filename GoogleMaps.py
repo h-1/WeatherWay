@@ -155,9 +155,10 @@ def parseTimes(step,steps):
 		plusTimes.append(currentTime)
 	return plusTimes
 
+
 def getStepsFromGoogle():
 	cLat = str(47.609219)
-	cLng = str(-122.325204)
+	cLng = str(-122.425204)
 	#destination's location
 	dLat = str(47.620328)
 	dLng = str(-122.320398)	
@@ -175,57 +176,54 @@ def getStepsFromGoogle():
 	routes = json.loads(data)
 
 	steps = routes["routes"][0]["legs"][0]["steps"]
+	print(json.dumps(steps))
 	return steps
 
-
+@app.route("/")
+def getStepsFromGoogle():
 #1. Get steps dic from Google
-steps = getStepsFromGoogle()
+	steps = getStepsFromGoogle()
 #2 	Create final array
-final = []
+	final = []
 
 #3. Check if it's raining on each step
-for step in steps:
+	for step in steps:
 	#4. Get the time of each step
-	plusTimes = parseTimes(step,steps)
+		plusTimes = parseTimes(step,steps)
 
-	stepLoc = step["start_location"]
-	lat = stepLoc["lat"]
-	lng = stepLoc["lng"]
-	print "lat:" + str(lat)
-	print "lng" + str(lng)
-
+		stepLoc = step["start_location"]
+		lat = stepLoc["lat"]
+		lng = stepLoc["lng"]
+		print "lat:" + str(lat)
+		print "lng" + str(lng)
 
 	#00:00:00
-	timeStep = getTimeForStep(step,steps,plusTimes)
+		timeStep = getTimeForStep(step,steps,plusTimes)
 
-	boolRain = isRaining(lat,lng,timeStep)
-
+		boolRain = isRaining(lat,lng,timeStep)
 
 #5. If it's raining, check for danger
-	if boolRain:
-		boolDangerous = isDangerous(step)
+		if boolRain:
+			boolDangerous = isDangerous(step)
 #6. If it's dangerous, remove step from final
-		if boolDangerous:
+			if boolDangerous:
 	
 #7. get alternative legs
-			print "Looking for alternatives"
-			alternativeLeg = getAlternativeForDanger(step,steps)
+				print "Looking for alternatives"
+				alternativeLeg = getAlternativeForDanger(step,steps)
 
 #8. Add alternativeLegs to the final
-			for aStep in alternativeLeg:
-				final.append(aStep)
+				for aStep in alternativeLeg:
+					final.append(aStep)
 
-		else:
+			else:
 		#5 Add step in final array
+				final.append(step)
+				print "---adding to final---------"
+		else:
 			final.append(step)
-			print "---adding to final---------"
-	else:
-
-			final.append(step)
-		
-
 #9 Print
-pprint(json.dumps(final))
+	print(json.dumps(final))
 
 
 #7 Delete dangerous step
@@ -245,5 +243,7 @@ pprint(json.dumps(final))
 
 # print(json.dumps(returnDirections))
 
-
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
