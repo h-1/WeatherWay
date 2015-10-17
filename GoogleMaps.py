@@ -8,6 +8,65 @@ app = Flask(__name__)
 import os
 from flask import current_app
 
+@app.route("/")
+def stepsFinder():
+	#call example: http://0.0.0.0:5000/?cLat=47.609219&cLng=-122.425204&dLat=47.520328&dLng=-122.320398
+#1. Get steps dic from Google
+	cLat = str(request.args['cLat'])
+	cLng = str(request.args['cLng'])
+	dLat = str(request.args['dLat'])
+	dLng = str(request.args['dLng'])
+
+	# cLat = str(47.609219)
+	# cLng = str(-122.425204)
+	# #destination's location
+	# dLat = str(47.520328)
+	# dLng = str(-122.320398)	
+	steps = getStepsFromGoogle(cLat,cLng,dLat,dLng)
+#2 	Create final array
+	final = []
+
+#3. Check if it's raining on each step
+	print "loop:"
+	for step in steps:
+
+	#4. Get the time of each step
+		plusTimes = parseTimes(step,steps)
+
+		stepLoc = step["start_location"]
+		lat = stepLoc["lat"]
+		lng = stepLoc["lng"]
+		print "lat:" + str(lat)
+		print "lng" + str(lng)
+
+	#00:00:00
+		timeStep = getTimeForStep(step,steps,plusTimes)
+
+		boolRain = isRaining(lat,lng,timeStep)
+
+#5. If it's raining, check for danger
+		if boolRain:
+			boolDangerous = isDangerous(step)
+#6. If it's dangerous, remove step from final
+			if boolDangerous:
+	
+#7. get alternative legs
+				print "Looking for alternatives"
+				alternativeLeg = getAlternativeForDanger(step,steps)
+
+#8. Add alternativeLegs to the final
+				for aStep in alternativeLeg:
+					final.append(aStep)
+
+			else:
+		#5 Add step in final array
+				final.append(step)
+				print "---adding to final---------"
+		else:
+			final.append(step)
+#9 Print
+	return(json.dumps(final))
+
 #Check if its raining on a location on determined time
 def isRaining(lat,lng,time):
 	time = "40:00:00"
@@ -156,12 +215,7 @@ def parseTimes(step,steps):
 	return plusTimes
 
 
-def getStepsFromGoogle():
-	cLat = str(47.609219)
-	cLng = str(-122.425204)
-	#destination's location
-	dLat = str(47.620328)
-	dLng = str(-122.320398)	
+def getStepsFromGoogle(cLat,cLng,dLat,dLng):
 	# print(cLat)
 	# print(cLng)
 	# print(dLat)
@@ -178,52 +232,6 @@ def getStepsFromGoogle():
 	steps = routes["routes"][0]["legs"][0]["steps"]
 	print(json.dumps(steps))
 	return steps
-
-@app.route("/")
-def getStepsFromGoogle():
-#1. Get steps dic from Google
-	steps = getStepsFromGoogle()
-#2 	Create final array
-	final = []
-
-#3. Check if it's raining on each step
-	for step in steps:
-	#4. Get the time of each step
-		plusTimes = parseTimes(step,steps)
-
-		stepLoc = step["start_location"]
-		lat = stepLoc["lat"]
-		lng = stepLoc["lng"]
-		print "lat:" + str(lat)
-		print "lng" + str(lng)
-
-	#00:00:00
-		timeStep = getTimeForStep(step,steps,plusTimes)
-
-		boolRain = isRaining(lat,lng,timeStep)
-
-#5. If it's raining, check for danger
-		if boolRain:
-			boolDangerous = isDangerous(step)
-#6. If it's dangerous, remove step from final
-			if boolDangerous:
-	
-#7. get alternative legs
-				print "Looking for alternatives"
-				alternativeLeg = getAlternativeForDanger(step,steps)
-
-#8. Add alternativeLegs to the final
-				for aStep in alternativeLeg:
-					final.append(aStep)
-
-			else:
-		#5 Add step in final array
-				final.append(step)
-				print "---adding to final---------"
-		else:
-			final.append(step)
-#9 Print
-	print(json.dumps(final))
 
 
 #7 Delete dangerous step
