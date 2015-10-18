@@ -33,7 +33,7 @@ class LoadingViewController: UIViewController {
     //      let nv = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
     //      self.blankView.addSubview(nv)
     
-  }
+      }
   
   func getCurrentLocation() -> CLLocation
   {
