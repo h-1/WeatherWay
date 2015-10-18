@@ -34,10 +34,13 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.\
     self.map.delegate = self
     
+    print(directions.count)
     self.directionsBest = self.directions[0]
     self.directionsGoogle = self.directions[1]
     
-    print("directions:\(directions)")
+    print("count:\(directions[0].count)")
+    print("count:\(directions[1].count)")
+    self.showInfo(self.directionsBest)
   }
   func showInfo(directions:[NSDictionary])
   {
@@ -53,7 +56,7 @@ class ViewController: UIViewController {
     var time = self.getTotalTime(directions)
     time = time/60
     self.lblDrivingTime.text = "\(time) minutes"
-    
+
     //ETA Label
     self.lblETA.text = self.getETA(Double(self.getTotalTime(directions)))
     
@@ -141,10 +144,13 @@ class ViewController: UIViewController {
     {
     case 0:
       //Best
+      self.map.removeOverlays(self.map.overlays)
+      print(self.directionsBest)
       self.showInfo(self.directionsBest)
       break
     case 1:
       //Google
+      self.map.removeOverlays(self.map.overlays)
       self.showInfo(self.directionsGoogle)
 
       break

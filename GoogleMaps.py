@@ -231,7 +231,6 @@ def getStepsFromGoogle(cLat,cLng,dLat,dLng):
 	routes = json.loads(data)
 
 	steps = routes["routes"][0]["legs"][0]["steps"]
-	print(json.dumps(steps))
 	return steps
 
 
@@ -267,7 +266,6 @@ def getGoogle():
 	routes = json.loads(data)
 
 	steps = routes["routes"][0]["legs"][0]["steps"]
-	print(json.dumps(steps))
 	return json.dumps(steps)
 
 
