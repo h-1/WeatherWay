@@ -5,6 +5,7 @@ target 'WeatherWayApp' do
 #  pod 'NVActivityIndicatorView'
   pod 'Alamofire', '~> 3.0'
   pod 'Polyline', '~> 2.0'
+  #pod 'LocationKit'
 
 end
 

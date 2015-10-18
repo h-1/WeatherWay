@@ -12,37 +12,54 @@ import EventKit
 import Alamofire
 
 class LoadingViewController: UIViewController {
-
+  
+  let manager = CLLocationManager()
+  
   @IBOutlet weak var blankView: UIView!
   
   var event: EKEvent!
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      print(event)
-      let location = event.structuredLocation
-      print("lat: \(location?.geoLocation?.coordinate.latitude)")
-      print("lng: \(location?.geoLocation?.coordinate.longitude)")
-      let arr = self.getDirectionsForLatitude(23.23, longitude: 23.23)
-        // Do any additional setup after loading the view.
-//      let nv = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-//      self.blankView.addSubview(nv)
-
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    print(event)
+    let location = event.structuredLocation
+    print("lat: \(location?.geoLocation?.coordinate.latitude)")
+    print("lng: \(location?.geoLocation?.coordinate.longitude)")
+    
+    
+    let arr = self.getDirectionsForLatitude((location?.geoLocation?.coordinate.latitude)!, longitude: (location?.geoLocation?.coordinate.longitude)!)
+    
+    // Do any additional setup after loading the view.
+    //      let nv = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+    //      self.blankView.addSubview(nv)
+    
+  }
+  
+  func getCurrentLocation() -> CLLocation
+  {
+    var locManager = CLLocationManager()
+    locManager.requestAlwaysAuthorization()
+    var currentLocation = CLLocation!()
+    
+    if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways ||
+      CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized){
+        
+        currentLocation = locManager.location
+        return currentLocation
     }
+    return CLLocation()
+  }
   
   func getDirectionsForLatitude(latitude:CLLocationDegrees,longitude:CLLocationDegrees) -> NSMutableArray
   {
     var arrResult = NSMutableArray()
     
-    Alamofire.request(.GET, "http://192.168.0.15:5000/?cLat=47.609219&cLng=-122.425204&dLat=47.520328&dLng=-122.320398").responseJSON { response in
+    let currentLoc = self.getCurrentLocation()
+    Alamofire.request(.GET, "http://192.168.0.15:5000/?cLat=\(currentLoc.coordinate.latitude)&cLng=\(currentLoc.coordinate.longitude)&dLat=\(latitude)&dLng=\(longitude)").responseJSON { response in
+      print(response.request)
       if let JSON = response.result.value {
         print("JSON: \(JSON)")
-        
-        /*
-        - latitude,longitude
-
-
-*/
+          self.performSegueWithIdentifier("routeLoaded", sender: JSON)
       }
       
       
@@ -50,14 +67,11 @@ class LoadingViewController: UIViewController {
     return arrResult
   }
   
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let theDestination = (segue.destinationViewController as! ViewController)
+    let routes = sender as! [NSDictionary]
+    theDestination.directions = routes
+  }
+  
 
 }
