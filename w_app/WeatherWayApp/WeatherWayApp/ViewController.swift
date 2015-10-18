@@ -11,12 +11,14 @@ import MapKit
 import Polyline
 class ViewController: UIViewController,MKMapViewDelegate {
   
+  @IBOutlet weak var butLetsGo: UIButton!
   @IBOutlet weak var map: MKMapView!
   var myRoute : MKRoute?
   var isBlue = false
   
   var polyFinal = MKPolyline()
   
+  @IBOutlet weak var seg: UISegmentedControl!
   var route:MKRoute! = MKRoute()
   var directions = [NSDictionary]()
   override func viewDidLoad() {
@@ -45,7 +47,8 @@ class ViewController: UIViewController,MKMapViewDelegate {
         }
         
       }
-      //
+    
+    //
       //      let route = MKRoute()
       //      let polyline = Polyline(coordinates: arrayCoordinates)
       //      let encodedPolyline: String = polyline.encodedPolyline
@@ -56,7 +59,9 @@ class ViewController: UIViewController,MKMapViewDelegate {
       self.polyFinal = poly
       self.map.insertOverlay(poly, atIndex: 0)
 
-    
+    //ROund corner
+    self.butLetsGo.layer.cornerRadius = 10 // this value vary as per your desire
+    self.butLetsGo.clipsToBounds = true
   }
   
   //  func fetch()
@@ -75,6 +80,22 @@ class ViewController: UIViewController,MKMapViewDelegate {
   //
   //  }
   
+  @IBAction func segChanged(sender: AnyObject)
+  {
+    switch self.seg.selectedSegmentIndex
+    {
+    case 0:
+      //do something
+
+      break
+    case 1:
+      //do something else
+
+      break
+    default:
+      break;
+    }
+  }
   func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
     
     let myLineRenderer = MKPolylineRenderer(polyline: polyFinal)
