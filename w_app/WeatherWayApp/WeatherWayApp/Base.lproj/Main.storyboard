@@ -85,13 +85,6 @@
                                 <color key="textColor" red="0.0" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="54 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJE-kK-6Oc">
-                                <rect key="frame" x="152" y="481" width="66" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1:45PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swN-i7-lHm">
                                 <rect key="frame" x="152" y="535" width="58" height="21"/>
                                 <animations/>
@@ -143,6 +136,13 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="54 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJE-kK-6Oc">
+                                <rect key="frame" x="152" y="481" width="66" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -178,6 +178,9 @@
                     </view>
                     <connections>
                         <outlet property="butLetsGo" destination="bOI-Fa-XEI" id="0HP-gC-Yrg"/>
+                        <outlet property="lblDistance" destination="PJE-kK-6Oc" id="8CC-Jg-1TW"/>
+                        <outlet property="lblDrivingTime" destination="FcY-vD-n6V" id="Emz-sH-Ze2"/>
+                        <outlet property="lblETA" destination="swN-i7-lHm" id="8EF-eG-1C3"/>
                         <outlet property="map" destination="HQV-TT-Eb0" id="gpS-Ta-Mh2"/>
                         <outlet property="seg" destination="iuv-lN-Mg0" id="nVf-MT-eqK"/>
                     </connections>

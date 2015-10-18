@@ -65,6 +65,7 @@ def stepsFinder():
 		else:
 			final.append(step)
 #9 Print
+	print(json.dumps(final))
 	return(json.dumps(final))
 
 #Check if its raining on a location on determined time
@@ -250,6 +251,25 @@ def getStepsFromGoogle(cLat,cLng,dLat,dLng):
 
 
 # print(json.dumps(returnDirections))
+@app.route("/getStepsFromGoogle")
+def getGoogle():
+	cLat = str(request.args['cLat'])
+	cLng = str(request.args['cLng'])
+	dLat = str(request.args['dLat'])
+	dLng = str(request.args['dLng'])
+
+	url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + cLat + "," + cLng + "&destination=" + dLat + "," + dLng + "&mode=driving&sensor=false&alternatives=true"
+	# print(url)
+	u = urllib.urlopen(url)
+	# u is a file-like object
+	data = u.read()
+	# print(data)
+	routes = json.loads(data)
+
+	steps = routes["routes"][0]["legs"][0]["steps"]
+	print(json.dumps(steps))
+	return json.dumps(steps)
+
 
 if __name__ == "__main__":
     # port = int(os.environ.get("PORT", 5000))

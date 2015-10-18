@@ -27,7 +27,7 @@ class LoadingViewController: UIViewController {
     print("lng: \(location?.geoLocation?.coordinate.longitude)")
     
     
-    let arr = self.getDirectionsForLatitude((location?.geoLocation?.coordinate.latitude)!, longitude: (location?.geoLocation?.coordinate.longitude)!)
+    self.getDirectionsForLatitude((location?.geoLocation?.coordinate.latitude)!, longitude: (location?.geoLocation?.coordinate.longitude)!)
     
     // Do any additional setup after loading the view.
     //      let nv = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
@@ -50,26 +50,33 @@ class LoadingViewController: UIViewController {
     return CLLocation()
   }
   
-  func getDirectionsForLatitude(latitude:CLLocationDegrees,longitude:CLLocationDegrees) -> NSMutableArray
+  func getDirectionsForLatitude(latitude:CLLocationDegrees,longitude:CLLocationDegrees)
   {
-    var arrResult = NSMutableArray()
-    
     let currentLoc = self.getCurrentLocation()
     Alamofire.request(.GET, "http://192.168.0.15:5000/?cLat=\(currentLoc.coordinate.latitude)&cLng=\(currentLoc.coordinate.longitude)&dLat=\(latitude)&dLng=\(longitude)").responseJSON { response in
       print(response.request)
       if let JSON = response.result.value {
         print("JSON: \(JSON)")
-          self.performSegueWithIdentifier("routeLoaded", sender: JSON)
+        
+          let currentLoc = self.getCurrentLocation()
+          Alamofire.request(.GET, "http://192.168.0.15:5000/getStepsFromGoogle?cLat=\(currentLoc.coordinate.latitude)&cLng=\(currentLoc.coordinate.longitude)&dLat=\(latitude)&dLng=\(longitude)").responseJSON { response in
+            print(response.request)
+            if let JSON2 = response.result.value {
+              print("JSON: \(JSON2)")
+              let arrFinal = [JSON,JSON2]
+              self.performSegueWithIdentifier("routeLoaded", sender: arrFinal)
+            }
+            
+            
+          }
       }
       
       
-    }
-    return arrResult
-  }
+    }  }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     let theDestination = (segue.destinationViewController as! ViewController)
-    let routes = sender as! [NSDictionary]
+    let routes = sender as! [[NSDictionary]]
     theDestination.directions = routes
   }
   
