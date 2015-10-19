@@ -1,0 +1,4 @@
+---
+applications:
+- name: weather-way
+  memory: 128M
