@@ -37,9 +37,7 @@ class ViewController: UIViewController {
     print(directions.count)
     self.directionsBest = self.directions[0]
     self.directionsGoogle = self.directions[1]
-    
-    print("count:\(directions[0].count)")
-    print("count:\(directions[1].count)")
+
     self.showInfo(self.directionsBest)
   }
   func showInfo(directions:[NSDictionary])

@@ -21,7 +21,9 @@
 		C23034EF1BCB6E420075EBBC /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23034EE1BCB6E420075EBBC /* ComplicationController.swift */; };
 		C23034F11BCB6E420075EBBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C23034F01BCB6E420075EBBC /* Assets.xcassets */; };
 		C23034F51BCB6E420075EBBC /* WeatherWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C23034D51BCB6E410075EBBC /* WeatherWatch.app */; };
+		C23B03171BD43DBB0018D4AB /* thunderLightningRainDay.png in Resources */ = {isa = PBXBuildFile; fileRef = C23B03161BD43DBB0018D4AB /* thunderLightningRainDay.png */; settings = {ASSET_TAGS = (); }; };
 		C26987811BD253440096EA47 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26987801BD253440096EA47 /* EventTableViewCell.swift */; };
+		C272DF571BD442B900B5110B /* cloudy_sunny.png in Resources */ = {isa = PBXBuildFile; fileRef = C272DF561BD442B900B5110B /* cloudy_sunny.png */; settings = {ASSET_TAGS = (); }; };
 		C28E98151BCA6131006D26E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E98141BCA6131006D26E9 /* AppDelegate.swift */; };
 		C28E98171BCA6131006D26E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28E98161BCA6131006D26E9 /* ViewController.swift */; };
 		C28E981A1BCA6131006D26E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28E98181BCA6131006D26E9 /* Main.storyboard */; };
@@ -108,7 +110,9 @@
 		C23034EE1BCB6E420075EBBC /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		C23034F01BCB6E420075EBBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C23034F21BCB6E420075EBBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C23B03161BD43DBB0018D4AB /* thunderLightningRainDay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thunderLightningRainDay.png; sourceTree = "<group>"; };
 		C26987801BD253440096EA47 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		C272DF561BD442B900B5110B /* cloudy_sunny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudy_sunny.png; sourceTree = "<group>"; };
 		C28E98111BCA6131006D26E9 /* WeatherWayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherWayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28E98141BCA6131006D26E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C28E98161BCA6131006D26E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 				C22765781BD25CFC002E4CE2 /* LoadingViewController.swift */,
 				C28E98161BCA6131006D26E9 /* ViewController.swift */,
 				C28E981B1BCA6131006D26E9 /* Assets.xcassets */,
+				C23B03161BD43DBB0018D4AB /* thunderLightningRainDay.png */,
+				C272DF561BD442B900B5110B /* cloudy_sunny.png */,
 				C28E981D1BCA6131006D26E9 /* LaunchScreen.storyboard */,
 				C28E98201BCA6131006D26E9 /* Info.plist */,
 				C23034CF1BCB6C0A0075EBBC /* WeatherWayApp-Bridging-Header.h */,
@@ -446,8 +452,10 @@
 			files = (
 				C28E981F1BCA6131006D26E9 /* LaunchScreen.storyboard in Resources */,
 				C28E981C1BCA6131006D26E9 /* Assets.xcassets in Resources */,
+				C23B03171BD43DBB0018D4AB /* thunderLightningRainDay.png in Resources */,
 				C28E981A1BCA6131006D26E9 /* Main.storyboard in Resources */,
 				C227657B1BD2FA7B002E4CE2 /* directions.json in Resources */,
+				C272DF571BD442B900B5110B /* cloudy_sunny.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

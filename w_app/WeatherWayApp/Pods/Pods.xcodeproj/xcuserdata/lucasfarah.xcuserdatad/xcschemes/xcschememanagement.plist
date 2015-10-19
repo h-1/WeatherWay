@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NVActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-WeatherWayApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,12 +27,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>214FAC59CA69585053C1F4485A8A1520</key>
+		<key>2B9617066A8B9C55C3E66411840E8D8C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A0F5224B8C8D85D5439A956EF5AC203</key>
+		<key>494F8B8A17931A303F0D9778E528F20E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4D5FA14000AC9D212859ED24998CC4D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
