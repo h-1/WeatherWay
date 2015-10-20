@@ -8,9 +8,14 @@ app = Flask(__name__)
 import os
 from flask import current_app
 
-@app.route("/")
+
+@app.route('/')
+def welcome():
+    return "Weather Way on Bluemix!"
+
+@app.route('/steps')
 def stepsFinder():
-	#call example: http://0.0.0.0:5000/?cLat=47.609219&cLng=-122.425204&dLat=47.520328&dLng=-122.320398
+	#call example: http://0.0.0.0:5000/steps?cLat=47.609219&cLng=-122.425204&dLat=47.520328&dLng=-122.320398
 #1. Get steps dic from Google
 	cLat = str(request.args['cLat'])
 	cLng = str(request.args['cLng'])
@@ -21,7 +26,7 @@ def stepsFinder():
 	# cLng = str(-122.425204)
 	# #destination's location
 	# dLat = str(47.520328)
-	# dLng = str(-122.320398)	
+	# dLng = str(-122.320398)
 	steps = getStepsFromGoogle(cLat,cLng,dLat,dLng)
 #2 	Create final array
 	final = []
@@ -49,7 +54,7 @@ def stepsFinder():
 			boolDangerous = isDangerous(step)
 #6. If it's dangerous, remove step from final
 			if boolDangerous:
-	
+
 #7. get alternative legs
 				print "Looking for alternatives"
 				alternativeLeg = getAlternativeForDanger(step,steps)
@@ -77,7 +82,7 @@ def isRaining(lat,lng,time):
 	split1 = data.split("dbz")[1]
 	split2 = split1[2:]
 	split3 = split2.split("</P")[0]
-	
+
 	if float(split3)>0:
 		return True
 	else:
@@ -105,10 +110,10 @@ def isDangerous(step):
 
 	#Getting dangerous areas from accidents.json
 	locations = parseJson()
-	
-	for danger in locations:	
 
-		print (abs(lat1 - danger["lat"]) < delta) 
+	for danger in locations:
+
+		print (abs(lat1 - danger["lat"]) < delta)
 		print (abs(lng1 - danger["lng"]) < delta)
 		if ((abs(lat1 - danger["lat"]) < delta) and (abs(lng1 - danger["lng"]) < delta)):
 			print "danager"
@@ -119,7 +124,7 @@ def isDangerous(step):
 	#If it is raining, check for dangerous areas
 	# if isRaining(lat,lng,getTimeForStep(step,steps,plusTimes)):
 	# 	print("It is raining")
-		
+
 	# 	count = 0
 
 				#code chunk1
@@ -149,7 +154,7 @@ def getAlternativeForDanger(step,steps):
 	#Last step
 	else:
 		step2["start_location"] = dict(step["end_location"])
-	
+
 	#End
 	stepLoc2 = step2["start_location"]
 	eLat = stepLoc2["lat"]
@@ -194,7 +199,7 @@ def getAlternativeForDanger(step,steps):
 	# steps[steps.index(step)] = alternateStep
 
 #given step, returns time in 00:00:00 format/
-def getTimeForStep(step,steps,plusTimes): 
+def getTimeForStep(step,steps,plusTimes):
 	index = steps.index(step)
 	plusTime = plusTimes[index]
 
@@ -235,12 +240,12 @@ def getStepsFromGoogle(cLat,cLng,dLat,dLng):
 
 
 #7 Delete dangerous step
-	
+
 	#chunk3
 	# print("steps:")
 	# pprint(json.dumps(steps))
 	# plusTimes = []
-	
+
 	# 	if  len(plusTimes) >0:
 	# 		currentTime = plusTimes[len(plusTimes)-1]
 

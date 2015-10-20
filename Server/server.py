@@ -9,6 +9,10 @@ import os
 app = Flask(__name__)
 
 @app.route('/')
+def welcome():
+    return "Weather Way on Bluemix!"
+
+@app.route('/steps')
 def stepsFinder():
     #call example: http://0.0.0.0:5000/?cLat=47.609219&cLng=-122.425204&dLat=47.520328&dLng=-122.320398
 #1. Get steps dic from Google
