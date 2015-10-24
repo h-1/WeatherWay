@@ -3,9 +3,11 @@ import csv
 import json
 import urllib2
 import itertools
+import requests
 from math import cos, sin, atan2, sqrt, pi
 from datetime import date, timedelta, datetime
 from sklearn import svm
+from numpy import arange
 
 # Create a list to contain data
 traffic_accidents = []
@@ -248,4 +250,34 @@ model_class.fit(features, labels)
 predict_result = model_class.predict([predict_JSON(('47.6062095', '-122.3320708'))])
 print predict_result
 
-# TODO: Implement while loop to listen to server
+# define danger level
+# City boundary
+# modify point_step_size to get more accurate results
+top_left     = (47.7347099, -122.4340902)
+top_right    = (47.7347099, -122.2486959)
+bottom_left  = (47.5239569, -122.4081636)
+bottom_right = (47.5135231, -122.2492052)
+point_step_size = 0.05
+lat_range = arange(bottom_right[0], top_left[0], point_step_size)
+lon_range = arange(top_left[1], top_right[1], point_step_size)
+lon_range = lon_range[::-1]
+
+def predict_danger(lat, lon):
+    danger = model_class.predict([predict_JSON((lat, lon))])[0]
+    return {'Latitude': i, 'Longitude': k, 'Danger': danger}
+
+# Create danger json
+danger_JSON = []
+for i in lat_range:
+    for k in lon_range:
+        danger_JSON.append(predict_danger(i, k))
+
+danger_JSON = json.dumps(danger_JSON)
+print danger_JSON
+
+# Post to server
+server_url = 'http://weatherway.mybluemix.net/'
+# server_post = requests.post(server_url, data = json.dumps(danger_JSON))
+server_post = requests.post(server_url, data = danger_JSON)
+server_post.text
+server_post.status_code
